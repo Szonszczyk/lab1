@@ -1,23 +1,46 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-char **charSquare(int n);
-void drawCharSquare(char **square, int n);
+//using namespace std;
 
-int main(int argc, char **argv)
+
+char **charSquare (int n, int seed);
+void drawCharSquare (char** square, int n);
+
+int main(int argc, char** argv)
 {
-	int n;
-	drawCharSquare(charSquare(n), n);	
+    if(argc<2) {printf("MALO ARGUMENTOW\n"); return -1;}
+    drawCharSquare(charSquare(atoi(argv[1]), atoi(argv[2])), atoi(argv[1]));
+    return 0;
 }
 
-char **charSquare(int n)
+
+char **charSquare (int n, int seed)
 {
-	char **square;
-	return square;
+    srand(seed);
+    char **square=new char *[n];
+    for (int i=0;i<n;i++) square[i] = new char [n];
+
+    for (int i=0;i<n;i++)
+    {
+        for (int j=0;j<n;j++)
+        {
+            square[i][j]=int(( rand() % 25 ) + 65);
+        }
+    }
+    return square;
 }
 
-void drawCharSquare(char **square, int n)
-{
 
+void drawCharSquare(char** square, int n)
+{
+    for (int i=0;i<n;i++)
+    {
+        for (int j=0;j<n;j++)
+        {
+            printf(" %c", square[i][j]);
+        }
+        printf("\n");
+    }
 }
